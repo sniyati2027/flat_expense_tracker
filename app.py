@@ -378,29 +378,26 @@ elif net_balance < 0:
 else:
     st.success("🎉 You're all settled up!")
 
+
 # ---------- All Expenses ----------
 st.subheader("📔🧺 All Shared Moments (Expenses)")
 
 if df.empty:
     st.info("No expenses yet.")
 else:
-    header_cols = st.columns([1.5, 3, 1.5, 1.5, 2, 1])
-    headers = ["Date", "Description", "Amount", "Paid By", "Category", "Delete"]
-    for col, header in zip(header_cols, headers):
-        col.markdown(f"**{header}**")
+    # Display a clean responsive table
+    df_display = df.copy()
+    df_display["Amount"] = df_display["Amount"].apply(lambda x: f"₹{x:.2f}")
+    st.dataframe(df_display, use_container_width=True)
 
+    # Add delete buttons for each row
     for i, row in df.iterrows():
-        cols = st.columns([1.5, 3, 1.5, 1.5, 2, 1])
-        cols[0].write(row["Date"])
-        cols[1].write(row["Description"])
-        cols[2].write(f"₹{row['Amount']:.2f}")
-        cols[3].write(row["Paid_By"])
-        cols[4].write(row["Category"])
-        if cols[5].button("❌", key=f"delete_{i}"):
+        if st.button(f"❌ Delete row {i+1}", key=f"delete_{i}"):
             df.drop(index=i, inplace=True)
             df.reset_index(drop=True, inplace=True)
             df.to_csv(DATA_FILE, index=False)
             st.rerun()
+
 
 # ---------- Footer ----------
 st.markdown("""
