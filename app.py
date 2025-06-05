@@ -286,7 +286,11 @@ def set_theme(dark_mode=False):
         <style>
         body, .stApp {
             background-color: #1c1c1c !important;
-            color: #f2f2f2 !important;
+            color: #E0E0E0 !important;  /* soft off-white text for night */
+        }
+        /* Optional: make headers and labels consistent */
+        h1, h2, h3, label, .css-10trblm, .stMarkdown, .stTextInput>div>div>input {
+            color: #E0E0E0 !important;
         }
         </style>
         """, unsafe_allow_html=True)
@@ -295,7 +299,7 @@ def set_theme(dark_mode=False):
         <style>
         body, .stApp, .block-container {
             background-color: #fff4f6 !important;
-            color: #4B0082 !important;
+            color: #4B0082 !important;  /* purple text */
             font-family: 'Segoe UI', sans-serif;
         }
         h1, h2, h3, label, .css-10trblm, .stMarkdown, .stTextInput>div>div>input {
@@ -303,6 +307,7 @@ def set_theme(dark_mode=False):
         }
         </style>
         """, unsafe_allow_html=True)
+
 
 # ---------- Sidebar ----------
 st.sidebar.markdown("## 🌓 Theme Settings")
