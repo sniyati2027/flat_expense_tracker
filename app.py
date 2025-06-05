@@ -332,7 +332,7 @@ if not os.path.exists(DATA_FILE):
 df = pd.read_csv(DATA_FILE)
 
 # ---------- Add Expense ----------
-st.subheader("🍽️🧴 Add a New Expense")
+st.subheader(" Add a New Expense")
 with st.form("expense_form"):
     date = st.date_input("Date")
     description = st.text_input("Description")
@@ -350,7 +350,7 @@ with st.form("expense_form"):
         st.rerun()
 
 # ---------- Balance Summary ----------
-st.subheader("🧾💞 Balance Summary")
+st.subheader("Balance Summary")
 
 niyati_paid_total = df[df["Paid_By"] == "Niyati"]["Amount"].sum()
 gorika_paid_total = df[df["Paid_By"] == "Gorika"]["Amount"].sum()
@@ -380,7 +380,7 @@ else:
 
 
 # ---------- All Expenses ----------
-st.subheader("📔🧺 All Shared Moments (Expenses)")
+st.subheader(" All Shared Moments (Expenses)")
 
 if df.empty:
     st.info("No expenses yet.")
